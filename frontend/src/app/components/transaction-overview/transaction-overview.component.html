@@ -1,0 +1,14 @@
+<h3>Transaction Overview</h3>
+<div class="transaction-overview">
+    <div class="row"><div>ID</div><div>Amount</div><div>Status</div><div>Transaction Type</div><div>Timestamp</div><div>Action</div></div>
+    @for (trns of transactions; track trns.id) {
+    <div class="row">
+     <div>{{ trns.id }}</div>
+     <div>{{ trns.amount }} {{ trns.currency }} </div>
+     <div>{{ trns.status | enumValue: statusEnum }}</div>
+     <div>{{ trns.transactionType | enumValue: transactionTypeEnum }}</div>
+     <div>{{ trns.timestamp | dateFormatter }}</div>
+     <div class="action"><button [routerLink]="['/transaction-details',trns.id]">View</button></div>
+  </div>
+    }
+</div>

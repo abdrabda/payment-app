@@ -1,0 +1,28 @@
+.search-form-wrapper{
+  margin-top:40px;
+  .search-form{
+    input{
+      min-width: 300px;
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button{
+      margin-left: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      &:hover, &:active{
+        background-color: #ddd;
+      }
+    }
+  }
+  .result{
+    padding: 20px 0;
+  }
+  .error{
+    color:red;
+  }
+}

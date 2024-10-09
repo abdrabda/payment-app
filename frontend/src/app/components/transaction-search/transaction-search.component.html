@@ -1,0 +1,15 @@
+<div class="search-form-wrapper">
+  <h3>Search for Transaction</h3>
+  <form class="search-form" [formGroup]="form" (submit)="onSubmit()">
+    <label for="id">Enter Transaction ID: </label>
+    <input id="id" type="number" formControlName="id" />
+    <button>Search</button>
+  </form>
+  <div class="result">
+    @if(transaction){
+    <app-transaction-info [transaction]="transaction"></app-transaction-info>
+    } @else if(errorMessage){
+    <div class="error">{{ errorMessage }}</div>
+    }
+  </div>
+</div>

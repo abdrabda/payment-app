@@ -1,0 +1,11 @@
+@if(transaction){
+  <div class="transaction-details">
+    <div><span>ID:</span>{{ transaction.id }}</div>
+    <div>
+      <span>Amount:</span>{{ transaction.amount }} {{ transaction.currency }}
+    </div>
+    <div><span>Status:</span>{{ transaction.status | enumValue: statusEnum }}</div>
+    <div><span>Transaction Type:</span>{{ transaction.transactionType | enumValue: transactionTypeEnum }}</div>
+    <div><span>Timestamp:</span>{{ transaction.timestamp | dateFormatter }}</div>
+  </div>
+}

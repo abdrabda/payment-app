@@ -1,0 +1,29 @@
+.transaction-overview {
+  display: flex;
+  flex-direction: column;
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    &:first-child{
+      font-weight: bold;
+    }
+    &:nth-child(even){
+      background-color:lightgray;
+    }
+    div {
+      flex: 1;
+      padding: 5px 10px;
+      text-align: center;
+    }
+  }
+}
+.link{
+  color: rgb(109, 108, 150);
+  font-weight: bold;
+  text-decoration: none;
+  &:visited{
+    color: rgb(109, 108, 150);
+  }
+}

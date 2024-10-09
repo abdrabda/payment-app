@@ -1,0 +1,37 @@
+.save-transaction-wrapper {
+  .field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    label{
+      flex: 0 0 150px;
+      margin-right: 10px;
+    }
+    input, select{
+      min-width: 300px;
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+  button{
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    &:hover, &:active{
+      background-color: #ddd;
+    }
+  }
+  .error{
+    color:red;
+    padding: 10px 0;
+  }
+  .success{
+    color:green;
+    padding: 10px 0;
+  }
+}

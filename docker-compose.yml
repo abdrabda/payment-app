@@ -1,0 +1,26 @@
+services:
+  payment-app-backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: payment-app-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  payment-app-frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: payment-app-frontend
+    ports:
+      - "80:80" 
+    networks:
+      - app-network
+    depends_on:
+      - payment-app-backend
+
+networks:
+  app-network:
+    driver: bridge

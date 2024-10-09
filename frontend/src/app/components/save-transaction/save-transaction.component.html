@@ -1,0 +1,44 @@
+<div class="save-transaction-wrapper">
+  <h3>Create Transaction</h3>
+  <div>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="field">
+        <label class="label" for="amount">Amount: </label>
+        <input id="amount" type="number" formControlName="amount" />
+      </div>
+      <div class="field">
+        <label for="currency">Currency: </label>
+        <select id="currency" formControlName="currency">
+          <option [value]="null">Select</option>
+          @for (curr of currencies | keyvalue; track curr.key) {
+          <option [value]="curr.key">{{ curr.value }}</option>
+          }
+        </select>
+      </div>
+      <div class="field">
+        <label for="transactionType">Transaction Type: </label>
+        <select id="transactionType" formControlName="transactionType">
+          <option [value]="null">Select</option>
+          @for (type of trTypes | keyvalue; track type.key) {
+          <option [value]="type.key">{{ type.value }}</option>
+          }
+        </select>
+      </div>
+      <div class="field">
+        <label for="status">Status: </label>
+        <select id="status" formControlName="status">
+          <option [value]="null">Select</option>
+          @for (st of statuses | keyvalue; track st.key) {
+          <option [value]="st.key">{{ st.value }}</option>
+          }
+        </select>
+      </div>
+      <div class="field">
+        <button [disabled]="submitDisabled">Save</button>
+      </div>
+    </form>
+  </div>
+  <div [class]="infoMsgClass">
+    {{ infoMessage }}
+  </div>
+</div>
