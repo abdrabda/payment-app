@@ -5,11 +5,12 @@ import { DateFormatterPipe } from '../../date-formatter.pipe';
 import { RouterLink } from '@angular/router';
 import { Status, TransactionType } from '../../../models/enums';
 import { EnumValuePipe } from '../../enum-value.pipe';
+import { ErrorFormatterPipe } from '../../pipes/error-formatter.pipe';
 
 @Component({
   selector: 'app-transaction-overview',
   standalone: true,
-  imports: [DateFormatterPipe,RouterLink,EnumValuePipe],
+  imports: [DateFormatterPipe,RouterLink,EnumValuePipe, ErrorFormatterPipe],
   templateUrl: './transaction-overview.component.html',
   styleUrl: './transaction-overview.component.scss',
 })
@@ -20,13 +21,20 @@ export class TransactionOverviewComponent {
   transactions: Transaction[] = [];
   statusEnum = Status;
   transactionTypeEnum = TransactionType;
-
+  isLoading = false;
+  error : any = undefined;
   constructor(private transactionService: TransactionService) {}
   ngOnInit(): void {
+    this.isLoading = true;
     this.transactionService.getTransactions().
     subscribe({
       next:(response)=>{
+        this.isLoading = false;
         this.transactions = response;
+      },
+      error:(error)=>{
+        this.isLoading = false;
+        this.error = error;
       }
     });;
   }

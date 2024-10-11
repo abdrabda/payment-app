@@ -8,11 +8,12 @@ import {
 import { TransactionService } from '../../../services/transaction.service';
 import { Transaction } from '../../../models/Transaction';
 import { TransactionInfoComponent } from '../transaction-info/transaction-info.component';
+import { ErrorFormatterPipe } from '../../pipes/error-formatter.pipe';
 
 @Component({
   selector: 'app-transaction-search',
   standalone: true,
-  imports: [ReactiveFormsModule, TransactionInfoComponent],
+  imports: [ReactiveFormsModule, TransactionInfoComponent, ErrorFormatterPipe],
   templateUrl: './transaction-search.component.html',
   styleUrl: './transaction-search.component.scss',
 })
@@ -21,10 +22,13 @@ import { TransactionInfoComponent } from '../transaction-info/transaction-info.c
  */
 export class TransactionSearchComponent {
   transaction: Transaction | undefined;
-  errorMessage: string | undefined;
+  error: any = undefined;
 
   form = new FormGroup({
-    id: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+    id: new FormControl<number | null>(null, [
+      Validators.required,
+      Validators.min(0),
+    ]),
   });
   constructor(private transactionService: TransactionService) {}
 
@@ -38,12 +42,11 @@ export class TransactionSearchComponent {
             this.transaction = response;
           },
           error: (err) => {
-            let msg = (err.error && typeof err.error === "string") ? err.error : JSON.stringify(err);
-            this.errorMessage = msg;
+            this.error = err;
           },
         });
     } else {
-      this.errorMessage = 'ID should be a valid number';
+      this.error = 'ID should be a valid number';
     }
   }
 }

@@ -8,8 +8,8 @@
   <div class="result">
     @if(transaction){
     <app-transaction-info [transaction]="transaction"></app-transaction-info>
-    } @else if(errorMessage){
-    <div class="error">{{ errorMessage }}</div>
+    } @else if(error){
+    <div class="error">{{ error | errorFormatter }}</div>
     }
   </div>
 </div>

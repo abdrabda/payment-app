@@ -3,11 +3,12 @@ import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { TransactionService } from '../../../services/transaction.service';
 import { Transaction } from '../../../models/Transaction';
 import { TransactionInfoComponent } from '../transaction-info/transaction-info.component';
+import { ErrorFormatterPipe } from '../../pipes/error-formatter.pipe';
 
 @Component({
   selector: 'app-transaction-details',
   standalone: true,
-  imports: [TransactionInfoComponent],
+  imports: [TransactionInfoComponent, ErrorFormatterPipe],
   templateUrl: './transaction-details.component.html',
   styleUrl: './transaction-details.component.scss'
 })
@@ -16,7 +17,7 @@ import { TransactionInfoComponent } from '../transaction-info/transaction-info.c
  */
 export class TransactionDetailsComponent {
   transaction: Transaction | undefined;
-  errorMessage: string | undefined;
+  error: any = undefined;
   constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
@@ -26,7 +27,7 @@ export class TransactionDetailsComponent {
         this.transaction = response;
       },
       error:(err) => {
-        this.errorMessage = err.error;
+        this.error = err;
       },
     });
   }

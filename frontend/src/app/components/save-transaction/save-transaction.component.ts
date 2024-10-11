@@ -10,6 +10,7 @@ import { KeyValuePipe } from '@angular/common';
 import { TransactionService } from '../../../services/transaction.service';
 import { Transaction } from '../../../models/Transaction';
 import { Router } from '@angular/router';
+import { ErrorFormatterPipe } from '../../pipes/error-formatter.pipe';
 
 @Component({
   selector: 'app-save-transaction',
@@ -25,6 +26,7 @@ export class SaveTransactionComponent {
   trTypes = getEnumKeyValue(TransactionType);
   statuses = getEnumKeyValue(Status);
   currencies = getEnumKeyValue(Currency);
+  errorFormatter = new ErrorFormatterPipe()
   infoMessage: string ="";
   infoMsgClass: string ="";
   submitDisabled: boolean = false;
@@ -55,8 +57,7 @@ export class SaveTransactionComponent {
         },
         error: (err) => {
           this.submitDisabled = false;
-          let msg = (err.error && typeof err.error === "string") ? err.error : JSON.stringify(err);
-          this.showMessage(msg,"error");
+          this.showMessage(this.errorFormatter.transform(err),"error");
         },
       });
     } else{

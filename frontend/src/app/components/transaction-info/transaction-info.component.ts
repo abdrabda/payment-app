@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Transaction } from '../../../models/Transaction';
-import { DateFormatterPipe } from '../../date-formatter.pipe';
-import { EnumValuePipe } from '../../enum-value.pipe';
+import { DateFormatterPipe } from '../../pipes/date-formatter.pipe';
+import { EnumValuePipe } from '../../pipes/enum-value.pipe';
 import { Status, TransactionType } from '../../../models/enums';
 
 @Component({
