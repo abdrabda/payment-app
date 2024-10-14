@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { TransactionService } from '../../../services/transaction.service';
 import { Transaction } from '../../../models/Transaction';
-import { DateFormatterPipe } from '../../date-formatter.pipe';
 import { RouterLink } from '@angular/router';
 import { Status, TransactionType } from '../../../models/enums';
-import { EnumValuePipe } from '../../enum-value.pipe';
 import { ErrorFormatterPipe } from '../../pipes/error-formatter.pipe';
+import { DateFormatterPipe } from '../../pipes/date-formatter.pipe';
+import { EnumValuePipe } from '../../pipes/enum-value.pipe';
 
 @Component({
   selector: 'app-transaction-overview',
